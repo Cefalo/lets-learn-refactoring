@@ -28,15 +28,15 @@ public class ServerInstanceManager {
     this.instanceName = instanceName;
   }
 
-  public JSONObject getServerInfo() {
-    JSONObject info = null;
+  public ServerInfo getServerInfo() {
+    ServerInfo serverInfo = null;
 
     String fileName = this.instanceName + ".json";
     IOOperation fileOperation = new FileOperation(fileName);
     try {
       String content = fileOperation.read();
       if (StringUtils.isNotBlank(content)) {
-        return new JSONObject(content);
+        serverInfo = toServerInfo(content);
       }
 
       IOOperation networkOperation = new NetworkOperation(fileName);
@@ -45,12 +45,20 @@ public class ServerInstanceManager {
         fileOperation.write(content);
       }
 
-      return new JSONObject(content);
+      serverInfo = toServerInfo(content);
 
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-    return info;
+    return serverInfo;
+  }
+
+  private ServerInfo toServerInfo(String content) {
+    JSONObject obj = new JSONObject(content);
+    Server server = new Server(obj.getString("host"), obj.getInt("port"));
+    Credentials credentials = new Credentials(obj.getString("user"), obj.getString("password"));
+
+    return new ServerInfo(server, credentials);
   }
 }

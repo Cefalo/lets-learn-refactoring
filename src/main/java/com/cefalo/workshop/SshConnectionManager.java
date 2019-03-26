@@ -9,64 +9,39 @@ import java.util.Properties;
 
 public class SshConnectionManager {
 
-  String host;
-  int port;
-  String user;
-  String password;
+  Server server;
+  Credentials credentials;
 
-  public SshConnectionManager(String host, int port, String user, String password) {
-    this.host = host;
-    this.port = port;
-    this.user = user;
-    this.password = password;
+  public SshConnectionManager(Server server, Credentials credentials) {
+    this.server = server;
+    this.credentials = credentials;
   }
 
-  public String getHost() {
-    return host;
+  public Server getServer() {
+    return server;
   }
 
-  public void setHost(String host) {
-    this.host = host;
+  public void setServer(Server server) {
+    this.server = server;
   }
 
-  public int getPort() {
-    return port;
+  public Credentials getCredentials() {
+    return credentials;
   }
 
-  public void setPort(int port) {
-    this.port = port;
-  }
-
-  public String getUser() {
-    return user;
-  }
-
-  public void setUser(String user) {
-    this.user = user;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
+  public void setCredentials(Credentials credentials) {
+    this.credentials = credentials;
   }
 
   public void sendCommand(String command) {
-    String host = this.host;
-    int port = this.port;
-    String user = this.user;
-    String password = this.password;
-
-    // String command = "ls -ltr";
 
     try {
       Properties properties = new Properties();
       properties.put("StrictHostKeyChecking", "no");
       JSch jsch = new JSch();
-      Session session = jsch.getSession(user, host, 22);
-      session.setPassword(password);
+      Session session = jsch.getSession(this.credentials.getUser(),
+          this.getServer().getHost(), this.getServer().getPort());
+      session.setPassword(this.getCredentials().getPassword());
       session.setConfig(properties);
       session.connect();
       System.out.println("Connected");

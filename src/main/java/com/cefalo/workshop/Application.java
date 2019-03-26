@@ -27,18 +27,14 @@ public class Application {
     String instanceName = StringUtils.isNotBlank(args[0]) ? "app1" : args[0];
     ServerInstanceManager instanceManager = new ServerInstanceManager(instanceName);
 
-    JSONObject config = instanceManager.getServerInfo();
-    if (config == null) {
+    ServerInfo serverInfo = instanceManager.getServerInfo();
+    if (serverInfo == null) {
       System.out.println("No valid Server details found for connection.");
       System.exit(1);
     }
 
-    String host = config.getString("host");
-    int port = config.getInt("port");
-    String user = config.getString("user");
-    String password = config.getString("password");
-
-    SshConnectionManager connectionManager = new SshConnectionManager(host, port, user, password);
+    SshConnectionManager connectionManager = new SshConnectionManager(serverInfo.getServer(),
+        serverInfo.getCredentials());
     String command = StringUtils.isNotBlank(args[1]) ? "ls -la" : args[1];
     connectionManager.sendCommand(command);
   }
