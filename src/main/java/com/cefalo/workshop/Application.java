@@ -3,6 +3,7 @@ package com.cefalo.workshop;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,16 +28,24 @@ public class Application {
     String instanceName = StringUtils.isNotBlank(args[0]) ? "app1" : args[0];
     ServerInstanceManager instanceManager = new ServerInstanceManager(instanceName);
 
-    ServerInfo serverInfo = instanceManager.getServerInfo();
-    if (serverInfo == null) {
+    ServerInfo info = instanceManager.getServerInfo();
+    if (info == null) {
       System.out.println("No valid Server details found for connection.");
       System.exit(1);
     }
 
-    SshConnectionManager connectionManager = new SshConnectionManager(serverInfo.getServer(),
-        serverInfo.getCredentials());
+    SshConnectionManager connectionManager = new SshConnectionManager();
     String command = StringUtils.isNotBlank(args[1]) ? "ls -la" : args[1];
-    connectionManager.sendCommand(command);
+
+    try {
+      CLI cli = connectionManager.connectToServer(info.getServer(), info.getCredentials());
+      System.out.println(cli.execute(command));
+      cli.exit();
+    } catch (JSchException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
 }
