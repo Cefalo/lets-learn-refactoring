@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 public class ServerInstanceManager {
 
-  private static final ClassLoader CLASS_LOADER = Application.class.getClassLoader();
+  private static final ClassLoader CLASS_LOADER = ServerInstanceManager.class.getClassLoader();
   private static final String JSON_CONFIG_URL = "https://github.com/satyajitdey02/ssh-client/blob/master/src/main/resources/app1.json";
 
   private String instanceName;
@@ -74,7 +74,8 @@ public class ServerInstanceManager {
     FileOutputStream fos = null;
 
     try {
-      File file = new File(CLASS_LOADER.getResource("config.json").toURI()).getAbsoluteFile();
+      File file = new File(CLASS_LOADER.getResource(this.instanceName + ".json").toURI())
+          .getAbsoluteFile();
       fos = new FileOutputStream(file);
 
       byte[] contentInBytes = config.toString().getBytes();
