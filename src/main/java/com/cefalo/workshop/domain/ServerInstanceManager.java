@@ -24,16 +24,15 @@ public class ServerInstanceManager {
       String content = fileOperation.read();
       if (StringUtils.isNotBlank(content)) {
         serverInfo = toServerInfo(content);
+      } else {
+        IOOperation networkOperation = new NetworkOperation(fileName);
+        content = networkOperation.read();
+        if (StringUtils.isNotBlank(content)) {
+          fileOperation.write(content);
+        }
+
+        serverInfo = toServerInfo(content);
       }
-
-      IOOperation networkOperation = new NetworkOperation(fileName);
-      content = networkOperation.read();
-      if (StringUtils.isNotBlank(content)) {
-        fileOperation.write(content);
-      }
-
-      serverInfo = toServerInfo(content);
-
     } catch (IOException e) {
       e.printStackTrace();
     }
