@@ -45,8 +45,10 @@ public class SshClient {
     session.setConfig(properties);
     session.connect();
 
+    System.out.println(String.format("Login success full to instance: %s as user: %s",
+        server.getHost(), credentials.getUser()));
+
     return new OsxCLI(session);
   }
-
 
 }

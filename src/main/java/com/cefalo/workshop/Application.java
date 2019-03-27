@@ -19,6 +19,7 @@ public class Application {
     ServerInstanceManager instanceManager = new ServerInstanceManager();
     CLI cli = instanceManager.connectToServer(instanceName);
     try {
+
       System.out.println(cli.execute(command));
     } catch (JSchException | IOException e) {
       e.printStackTrace();

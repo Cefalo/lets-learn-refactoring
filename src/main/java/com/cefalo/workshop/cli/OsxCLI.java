@@ -17,6 +17,9 @@ public class OsxCLI implements CLI {
 
   @Override
   public String execute(String command) throws JSchException, IOException {
+    System.out.println(String.format("%s@%s:~$ %s",
+        session.getUserName(), session.getHost(), command));
+
     StringBuilder sb = new StringBuilder();
 
     Channel channel = session.openChannel("exec");
