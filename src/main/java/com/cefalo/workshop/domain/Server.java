@@ -1,4 +1,4 @@
-package com.cefalo.workshop;
+package com.cefalo.workshop.domain;
 
 public class Server {
 

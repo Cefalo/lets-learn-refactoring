@@ -1,4 +1,4 @@
-package com.cefalo.workshop;
+package com.cefalo.workshop.cli;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;

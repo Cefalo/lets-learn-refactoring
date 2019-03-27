@@ -1,5 +1,8 @@
-package com.cefalo.workshop;
+package com.cefalo.workshop.domain;
 
+import com.cefalo.workshop.io.FileOperation;
+import com.cefalo.workshop.io.IOOperation;
+import com.cefalo.workshop.io.NetworkOperation;
 import java.io.IOException;
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONObject;

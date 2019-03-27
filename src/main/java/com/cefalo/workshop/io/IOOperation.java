@@ -1,4 +1,4 @@
-package com.cefalo.workshop;
+package com.cefalo.workshop.io;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.cefalo.workshop;
+package com.cefalo.workshop.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +11,7 @@ public class NetworkOperation implements IOOperation {
 
   private String fileName;
 
-  NetworkOperation(String fileName) {
+  public NetworkOperation(String fileName) {
     this.fileName = fileName;
   }
 
