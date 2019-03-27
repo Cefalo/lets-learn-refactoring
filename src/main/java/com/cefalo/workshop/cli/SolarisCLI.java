@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * Created by satyajit on 3/27/19.
  */
-public class SolarisCLI implements CLI{
+public class SolarisCLI implements CLI {
 
   private Session session;
 

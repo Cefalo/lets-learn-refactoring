@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * Created by satyajit on 3/26/19.
  */
-public class WindowsCLI implements CLI{
+public class WindowsCLI implements CLI {
 
   private Session session;
 

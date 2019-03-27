@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * Created by satyajit on 3/26/19.
  */
-public class UnixCLI implements CLI{
+public class UnixCLI implements CLI {
 
   private Session session;
 
