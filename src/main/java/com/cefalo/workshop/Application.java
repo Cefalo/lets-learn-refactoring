@@ -4,6 +4,7 @@ import com.cefalo.workshop.cli.CLI;
 import com.cefalo.workshop.domain.ServerInstanceManager;
 import com.jcraft.jsch.JSchException;
 import java.io.IOException;
+import java.util.Objects;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -18,9 +19,9 @@ public class Application {
 
     ServerInstanceManager instanceManager = new ServerInstanceManager();
     CLI cli = instanceManager.connectToServer(instanceName);
-    try {
 
-      System.out.println(cli.execute(command));
+    try {
+      System.out.println(Objects.requireNonNull(cli.execute(command)));
     } catch (JSchException | IOException e) {
       e.printStackTrace();
     } finally {
