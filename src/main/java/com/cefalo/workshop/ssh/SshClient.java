@@ -1,7 +1,7 @@
 package com.cefalo.workshop.ssh;
 
 import com.cefalo.workshop.cli.CLI;
-import com.cefalo.workshop.cli.OsxCLI;
+import com.cefalo.workshop.cli.CliFactory;
 import com.cefalo.workshop.domain.Credentials;
 import com.cefalo.workshop.domain.Server;
 import com.jcraft.jsch.JSch;
@@ -48,10 +48,10 @@ public class SshClient {
     session.setConfig(properties);
     session.connect();
 
-    System.out.println(String.format("Login success full to instance: %s as user: %s",
+    System.out.println(String.format("Login success full to instance: %s as user: %s\n",
         server.getHost(), credentials.getUser()));
 
-    return new OsxCLI(session);
+    return CliFactory.getCLI(session);
   }
 
 }

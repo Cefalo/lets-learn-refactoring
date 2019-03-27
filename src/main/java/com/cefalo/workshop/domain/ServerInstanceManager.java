@@ -50,7 +50,7 @@ public class ServerInstanceManager {
   }
 
   public CLI connectToServer(String instanceName) {
-    System.out.println(String.format("Trying to connect to instance: %s\n", instanceName));
+    System.out.println(String.format("Trying to connect to instance: %s", instanceName));
 
     CLI cli = null;
 
