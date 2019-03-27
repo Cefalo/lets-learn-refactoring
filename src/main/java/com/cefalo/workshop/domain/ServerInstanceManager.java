@@ -29,9 +29,8 @@ public class ServerInstanceManager {
         content = networkOperation.read();
         if (StringUtils.isNotBlank(content)) {
           fileOperation.write(content);
+          serverInfo = toServerInfo(content);
         }
-
-        serverInfo = toServerInfo(content);
       }
     } catch (IOException e) {
       e.printStackTrace();
