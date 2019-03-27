@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+/**
+ * Created by satyajit on 3/26/19.
+ */
 public class NetworkOperation implements IOOperation {
 
   private static final String JSON_CONFIG_URL = "https://raw.githubusercontent.com/satyajitdey02/ssh-client/master/src/main/resources/%s";

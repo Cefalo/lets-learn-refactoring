@@ -1,5 +1,8 @@
 package com.cefalo.workshop.domain;
 
+/**
+ * Created by satyajit on 3/26/19.
+ */
 public class Server {
 
   private String host;

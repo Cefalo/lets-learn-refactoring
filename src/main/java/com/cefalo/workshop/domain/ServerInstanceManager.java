@@ -10,6 +10,9 @@ import java.io.IOException;
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONObject;
 
+/**
+ * Created by satyajit on 3/26/19.
+ */
 public class ServerInstanceManager {
 
   public ServerInfo getServerInfo(String instanceName) {

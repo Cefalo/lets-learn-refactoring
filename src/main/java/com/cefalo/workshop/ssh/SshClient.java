@@ -9,6 +9,9 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import java.util.Properties;
 
+/**
+ * Created by satyajit on 3/26/19.
+ */
 public class SshClient {
 
   private Server server;

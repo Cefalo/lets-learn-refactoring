@@ -5,6 +5,9 @@ import com.cefalo.workshop.domain.Credentials;
 import com.cefalo.workshop.domain.Server;
 import com.jcraft.jsch.JSchException;
 
+/**
+ * Created by satyajit on 3/26/19.
+ */
 public class SshConnectionManager {
 
   public CLI connectSSH(Server server, Credentials credentials) throws JSchException {
