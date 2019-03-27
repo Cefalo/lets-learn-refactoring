@@ -4,6 +4,7 @@ import com.cefalo.workshop.cli.CLI;
 import com.cefalo.workshop.io.FileOperation;
 import com.cefalo.workshop.io.IOOperation;
 import com.cefalo.workshop.io.NetworkOperation;
+import com.cefalo.workshop.io.decorator.NetworkOperationDecorator;
 import com.cefalo.workshop.ssh.SshConnectionManager;
 import com.jcraft.jsch.JSchException;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
  */
 public class ServerInstanceManager {
 
+  //TODO: Need to organize this method a bit
   public ServerInfo getServerInfo(String instanceName) {
     ServerInfo serverInfo = null;
 
@@ -24,15 +26,16 @@ public class ServerInstanceManager {
       String content = fileOperation.read();
       if (StringUtils.isNotBlank(content)) {
         serverInfo = toServerInfo(content);
+      } else {
+        //Decorate network operation so that it can handle write file operation
+        //after network file read
+        IOOperation networkOperation = new NetworkOperationDecorator(
+            new NetworkOperation(fileName));
+        content = networkOperation.read();
+        if (StringUtils.isNotBlank(content)) {
+          serverInfo = toServerInfo(content);
+        }
       }
-
-      IOOperation networkOperation = new NetworkOperation(fileName);
-      content = networkOperation.read();
-      if (StringUtils.isNotBlank(content)) {
-        fileOperation.write(content);
-      }
-
-      serverInfo = toServerInfo(content);
 
     } catch (IOException e) {
       e.printStackTrace();
