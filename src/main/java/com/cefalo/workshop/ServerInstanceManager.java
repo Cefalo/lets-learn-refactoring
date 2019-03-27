@@ -1,13 +1,6 @@
 package com.cefalo.workshop;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URISyntaxException;
-import java.net.URL;
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONObject;
 

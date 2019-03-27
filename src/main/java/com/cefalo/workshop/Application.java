@@ -1,19 +1,5 @@
 package com.cefalo.workshop;
 
-import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.ChannelExec;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.Session;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.Properties;
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONObject;
 
@@ -24,7 +10,7 @@ public class Application {
 
   public static void main(String[] args) {
 
-    String instanceName = StringUtils.isNotBlank(args[0]) ? "app1" : args[0];
+    String instanceName = (args.length == 0 || StringUtils.isBlank(args[0])) ? "app2" : args[0];
     ServerInstanceManager instanceManager = new ServerInstanceManager(instanceName);
 
     JSONObject config = instanceManager.getServerInfo();
@@ -39,7 +25,7 @@ public class Application {
     String password = config.getString("password");
 
     SshConnectionManager connectionManager = new SshConnectionManager(host, port, user, password);
-    String command = StringUtils.isNotBlank(args[1]) ? "ls -la" : args[1];
+    String command = (args.length <= 1 || StringUtils.isBlank(args[1])) ? "ls -la" : args[1];
     connectionManager.sendCommand(command);
   }
 
