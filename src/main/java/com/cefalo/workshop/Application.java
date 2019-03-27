@@ -11,7 +11,7 @@ public class Application {
 
   public static void main(String[] args) {
 
-    String instanceName = (args.length > 0 && StringUtils.isNotBlank(args[0])) ? args[0] : "app1";
+    String instanceName = (args.length > 0 && StringUtils.isNotBlank(args[0])) ? args[0] : "app2";
     ServerInstanceManager instanceManager = new ServerInstanceManager(instanceName);
 
     ServerInfo info = instanceManager.getServerInfo();

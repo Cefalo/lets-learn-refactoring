@@ -26,7 +26,8 @@ public class FileOperation implements IOOperation {
       FileInputStream fis = new FileInputStream(file);
       int i;
       while ((i = fis.read()) != -1) {
-        sb.append((char) i);
+        final char c = (char) i;
+        sb.append(c);
       }
 
       fis.close();
