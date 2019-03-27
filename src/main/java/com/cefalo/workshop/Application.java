@@ -26,7 +26,7 @@ public class Application {
     JSONObject configObject = null;
     ClassLoader classLoader = Application.class.getClassLoader();
 
-    final URL fileURL = classLoader.getResource("app1.json");
+    final URL fileURL = classLoader.getResource("app2.json");
     if (fileURL != null) {
       File configFile = new File(fileURL.getFile());
 
@@ -51,7 +51,7 @@ public class Application {
           URL configUrl;
           try {
             configUrl = new URL(
-                "https://raw.githubusercontent.com/satyajitdey02/cefalo-school-assignment/master/.gitignore");
+                "https://raw.githubusercontent.com/satyajitdey02/ssh-client/master/src/main/resources/app2.json");
 
             reader = new BufferedReader(new InputStreamReader(configUrl.openStream()));
             String inputLine;
@@ -108,7 +108,7 @@ public class Application {
         URL configUrl;
         try {
           configUrl = new URL(
-              "https://raw.githubusercontent.com/satyajitdey02/cefalo-school-assignment/master/.gitignore");
+              "https://raw.githubusercontent.com/satyajitdey02/ssh-client/master/src/main/resources/app2.json");
 
           reader = new BufferedReader(new InputStreamReader(configUrl.openStream()));
           String inputLine;
