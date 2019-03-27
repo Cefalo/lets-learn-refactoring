@@ -7,11 +7,11 @@ import com.jcraft.jsch.Session;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class MacCLI implements CLI {
+public class OsxCLI implements CLI {
 
   Session session;
 
-  public MacCLI(Session session) {
+  public OsxCLI(Session session) {
     this.session = session;
   }
 

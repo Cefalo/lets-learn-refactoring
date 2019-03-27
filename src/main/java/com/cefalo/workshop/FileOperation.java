@@ -5,8 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import org.apache.commons.lang.StringUtils;
-import org.json.JSONObject;
 
 public class FileOperation implements IOOperation {
 
@@ -25,9 +23,8 @@ public class FileOperation implements IOOperation {
 
     File file = new File(CLASS_LOADER.getResource(this.fileName).getFile());
     if (file.exists()) {
-      FileInputStream fis = null;
-      fis = new FileInputStream(file);
-      int i = 0;
+      FileInputStream fis = new FileInputStream(file);
+      int i;
       while ((i = fis.read()) != -1) {
         sb.append((char) i);
       }

@@ -41,9 +41,8 @@ public class SshClient {
     session.setConfig(properties);
     session.connect();
 
-    return new MacCLI(session);
+    return new OsxCLI(session);
   }
-
 
 
 }
