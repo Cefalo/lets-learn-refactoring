@@ -1,33 +1,21 @@
 package com.cefalo.workshop.domain;
 
+import com.cefalo.workshop.cli.CLI;
 import com.cefalo.workshop.io.FileOperation;
 import com.cefalo.workshop.io.IOOperation;
 import com.cefalo.workshop.io.NetworkOperation;
+import com.cefalo.workshop.ssh.SshConnectionManager;
+import com.jcraft.jsch.JSchException;
 import java.io.IOException;
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONObject;
 
 public class ServerInstanceManager {
 
-
-  private String instanceName;
-
-  public ServerInstanceManager(String instanceName) {
-    this.instanceName = instanceName;
-  }
-
-  public String getInstanceName() {
-    return instanceName;
-  }
-
-  public void setInstanceName(String instanceName) {
-    this.instanceName = instanceName;
-  }
-
-  public ServerInfo getServerInfo() {
+  public ServerInfo getServerInfo(String instanceName) {
     ServerInfo serverInfo = null;
 
-    String fileName = this.instanceName + ".json";
+    String fileName = instanceName + ".json";
     IOOperation fileOperation = new FileOperation(fileName);
     try {
       String content = fileOperation.read();
@@ -56,5 +44,20 @@ public class ServerInstanceManager {
     Credentials credentials = new Credentials(obj.getString("user"), obj.getString("password"));
 
     return new ServerInfo(server, credentials);
+  }
+
+  public CLI connectToServer(String instanceName) {
+    CLI cli = null;
+
+    ServerInfo info = getServerInfo(instanceName);
+    SshConnectionManager connectionManager = new SshConnectionManager();
+
+    try {
+      cli = connectionManager.connectSSH(info.getServer(), info.getCredentials());
+    } catch (JSchException e) {
+      e.printStackTrace();
+    }
+
+    return cli;
   }
 }

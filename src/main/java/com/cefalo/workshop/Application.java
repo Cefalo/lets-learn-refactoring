@@ -1,9 +1,7 @@
 package com.cefalo.workshop;
 
 import com.cefalo.workshop.cli.CLI;
-import com.cefalo.workshop.domain.ServerInfo;
 import com.cefalo.workshop.domain.ServerInstanceManager;
-import com.cefalo.workshop.ssh.SshConnectionManager;
 import com.jcraft.jsch.JSchException;
 import java.io.IOException;
 import org.apache.commons.lang.StringUtils;
@@ -16,23 +14,16 @@ public class Application {
   public static void main(String[] args) {
 
     String instanceName = (args.length > 0 && StringUtils.isNotBlank(args[0])) ? args[0] : "app2";
-    ServerInstanceManager instanceManager = new ServerInstanceManager(instanceName);
-
-    ServerInfo info = instanceManager.getServerInfo();
-    if (info == null) {
-      System.out.println("No valid Server details found for connection.");
-      System.exit(1);
-    }
-
-    SshConnectionManager connectionManager = new SshConnectionManager();
     String command = (args.length > 1 && StringUtils.isNotBlank(args[1])) ? args[1] : "ls -la";
 
+    ServerInstanceManager instanceManager = new ServerInstanceManager();
+    CLI cli = instanceManager.connectToServer(instanceName);
     try {
-      CLI cli = connectionManager.connectToServer(info.getServer(), info.getCredentials());
       System.out.println(cli.execute(command));
-      cli.exit();
     } catch (JSchException | IOException e) {
       e.printStackTrace();
+    } finally {
+      cli.exit();
     }
   }
 
