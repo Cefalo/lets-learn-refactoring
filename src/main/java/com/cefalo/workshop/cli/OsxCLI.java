@@ -9,17 +9,9 @@ import java.io.InputStream;
 
 public class OsxCLI implements CLI {
 
-  Session session;
+  private Session session;
 
   public OsxCLI(Session session) {
-    this.session = session;
-  }
-
-  public Session getSession() {
-    return session;
-  }
-
-  public void setSession(Session session) {
     this.session = session;
   }
 
@@ -45,7 +37,7 @@ public class OsxCLI implements CLI {
       }
 
       if (channel.isClosed()) {
-        sb.append("\n").append("exit-status: " + channel.getExitStatus());
+        sb.append("\n").append("exit-status: ").append(channel.getExitStatus());
         break;
       }
 

@@ -2,8 +2,8 @@ package com.cefalo.workshop.domain;
 
 public class ServerInfo {
 
-  Server server;
-  Credentials credentials;
+  private Server server;
+  private Credentials credentials;
 
   public ServerInfo(Server server, Credentials credentials) {
     this.server = server;

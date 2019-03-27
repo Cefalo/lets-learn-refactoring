@@ -2,8 +2,8 @@ package com.cefalo.workshop.domain;
 
 public class Server {
 
-  String host;
-  int port;
+  private String host;
+  private int port;
 
   public Server(String host, int port) {
     this.host = host;

@@ -11,8 +11,8 @@ import java.util.Properties;
 
 public class SshClient {
 
-  Server server;
-  Credentials credentials;
+  private Server server;
+  private Credentials credentials;
 
   public SshClient(Server server, Credentials credentials) {
     this.server = server;
