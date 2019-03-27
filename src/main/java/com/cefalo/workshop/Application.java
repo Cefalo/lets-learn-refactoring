@@ -23,12 +23,12 @@ import org.json.JSONObject;
 public class Application {
 
   private static final ClassLoader CLASS_LOADER = Application.class.getClassLoader();
-  private static final String JSON_CONFIG_URL = "https://github.com/satyajitdey02/ssh-client/blob/master/src/main/resources/app1.json";
+  private static final String JSON_CONFIG_URL = "https://raw.githubusercontent.com/satyajitdey02/ssh-client/master/src/main/resources/app2.json";
 
   JSONObject readLocalConfig() {
 
     JSONObject config = null;
-    File configFile = new File(CLASS_LOADER.getResource("app1.json").getFile());
+    File configFile = new File(CLASS_LOADER.getResource("app2.json").getFile());
 
     if (configFile.exists()) {
       StringBuilder sb = new StringBuilder();
