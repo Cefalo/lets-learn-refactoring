@@ -22,7 +22,7 @@ public class SshClientTests {
   private static final String COMMAND = "whoami";
 
   @Before
-  public void before() throws JSchException {
+  public void before() {
     ServerInstanceManager instanceManager = new ServerInstanceManager();
     cli = instanceManager.connectToServer(SERVER_INSTANCE);
   }
