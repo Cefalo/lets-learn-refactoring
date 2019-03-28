@@ -27,6 +27,7 @@ public class Application {
     ClassLoader classLoader = Application.class.getClassLoader();
 
     final URL fileURL = classLoader.getResource("app2.json");
+    //Read server details from local config
     if (fileURL != null) {
       File configFile = new File(fileURL.getFile());
 
@@ -47,6 +48,7 @@ public class Application {
         if (StringUtils.isNotBlank(sb.toString())) {
           configObject = new JSONObject(sb.toString());
         } else {
+          //Download server config from remote URL(if local config is not found)
           BufferedReader reader = null;
           URL configUrl;
           try {
@@ -74,6 +76,8 @@ public class Application {
 
         String content = sb.toString();
         configObject = new JSONObject(content);
+
+        //Keep a local copy of the server details for further use
         FileOutputStream fop = null;
         File file;
 
@@ -103,6 +107,7 @@ public class Application {
         }
 
       } else {
+        //DUPLICATE: Download server details from remote URL
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = null;
         URL configUrl;
@@ -131,6 +136,7 @@ public class Application {
         String content = sb.toString();
         configObject = new JSONObject(content);
 
+        //DUPLICATE: Keep a local copy of the server details for further use
         FileOutputStream fop = null;
         File file;
 
@@ -161,6 +167,7 @@ public class Application {
       }
     }
 
+    // Connect to Server using SSH
     String host = configObject.getString("host");
     String user = configObject.getString("user");
     String password = configObject.getString("password");
