@@ -1,10 +1,12 @@
+## Problem Summary ##
+
 Suppose you are an application developer currently working for Amazon. Amazon wants you to build a SSH Client tool which will be used by their customers who purchase various servers to make their application  up & running on Amazon cloud.
 
 Let's consider one of the Amazon's customer has the following server setup -
 
-1. Three app servers(app1, app2 and app3)
-2. Two Database servers(db1 and db2)
-3. One file server to keep the binaries(images, video etc.)
+1. **Three app servers(app1, app2 and app3)**
+2. **Two Database servers(db1 and db2)**
+3. **One file server to keep the binaries(images, video etc.)**
 
 After subscribing to AWS cloud Amazon will be providing the servers info and their respective credentials to connect and do server administration works.
 
@@ -16,10 +18,10 @@ Amazon may change their config file format from json to other(xml, yaml, propert
 
 Remember, your stakeholders won't mind to expect something like following from your system-
 
-1. Flexibility
-2. Extensibility
-3. Reusability
-4. Maintainability 
-5. Understandability
+1. **Flexibility**
+2. **Extensibility**
+3. **Reusability**
+4. **Maintainability** 
+5. **Understandability**
 
-And lastly make sure you understand all the requirements from your stakeholders. 
+*And lastly make sure you understand all the requirements from your stakeholders.* 
