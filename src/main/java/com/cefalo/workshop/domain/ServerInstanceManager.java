@@ -17,6 +17,7 @@ import org.json.JSONObject;
 public class ServerInstanceManager {
 
   //TODO: Need to organize this method a bit
+  //Rather than using nested if/else we can manage simpler decision making in the code flow
   public ServerInfo getServerInfo(String instanceName) {
     ServerInfo serverInfo = null;
 
