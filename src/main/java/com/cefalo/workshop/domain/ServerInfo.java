@@ -28,4 +28,12 @@ public class ServerInfo {
   public void setCredentials(Credentials credentials) {
     this.credentials = credentials;
   }
+
+  @Override
+  public String toString() {
+    return "{\"host\": \"" + this.server.getHost()
+        + "\", \"port\": " + this.server.getPort()
+        + ",\"user\": \"" + this.credentials.getUser()
+        + "\",\"password\": \"" + this.credentials.getPassword() + "\" }";
+  }
 }

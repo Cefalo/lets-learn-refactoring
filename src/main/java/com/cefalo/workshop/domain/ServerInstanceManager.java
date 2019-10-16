@@ -2,35 +2,30 @@ package com.cefalo.workshop.domain;
 
 import com.cefalo.workshop.cli.CLI;
 import com.cefalo.workshop.io.FileOperation;
-import com.cefalo.workshop.io.IOOperation;
 import com.cefalo.workshop.io.NetworkOperation;
 import com.cefalo.workshop.ssh.SshConnectionManager;
 import com.jcraft.jsch.JSchException;
 import java.io.IOException;
-import org.apache.commons.lang.StringUtils;
-import org.json.JSONObject;
 
 /**
  * Created by satyajit on 3/26/19.
  */
 public class ServerInstanceManager {
 
-  public ServerInfo getServerInfo(String instanceName) {
-    ServerInfo serverInfo = null;
 
-    String fileName = instanceName + ".json";
-    IOOperation fileOperation = new FileOperation(fileName);
+  public ServerInfo getServerInfo(String instanceName) {
+
+    ServerInfo serverInfo = null;
+    ServerRepository repository = new ServerRepository(new FileOperation(instanceName));
+
     try {
-      String content = fileOperation.read();
-      if (StringUtils.isNotBlank(content)) {
-        serverInfo = toServerInfo(content);
-      } else {
-        IOOperation networkOperation = new NetworkOperation(fileName);
-        content = networkOperation.read();
-        if (StringUtils.isNotBlank(content)) {
-          fileOperation.write(content);
-          serverInfo = toServerInfo(content);
-        }
+      serverInfo = repository.read();
+      if (serverInfo == null) {
+        repository = new ServerRepository(new NetworkOperation(instanceName));
+        serverInfo = repository.read();
+
+        repository = new ServerRepository(new FileOperation(instanceName));
+        repository.update(serverInfo);
       }
 
     } catch (IOException e) {
@@ -40,13 +35,6 @@ public class ServerInstanceManager {
     return serverInfo;
   }
 
-  private ServerInfo toServerInfo(String content) {
-    JSONObject obj = new JSONObject(content);
-    Server server = new Server(obj.getString("host"), obj.getInt("port"));
-    Credentials credentials = new Credentials(obj.getString("user"), obj.getString("password"));
-
-    return new ServerInfo(server, credentials);
-  }
 
   public CLI connectToServer(String instanceName) {
     System.out.println(String.format("Trying to connect to instance: %s", instanceName));

@@ -12,6 +12,7 @@ import java.util.Objects;
  */
 public class FileOperation implements IOOperation {
 
+  private static final String CONFIG_FILE_EXT = ".json";
   private static final ClassLoader CLASS_LOADER = FileOperation.class.getClassLoader();
 
   private String fileName;
@@ -25,7 +26,7 @@ public class FileOperation implements IOOperation {
 
     StringBuilder sb = new StringBuilder();
 
-    File file = new File(Objects.requireNonNull(CLASS_LOADER.getResource(this.fileName)).getFile());
+    File file = new File(Objects.requireNonNull(CLASS_LOADER.getResource(this.fileName + CONFIG_FILE_EXT)).getFile());
     if (file.exists()) {
       FileInputStream fis = new FileInputStream(file);
       int i;

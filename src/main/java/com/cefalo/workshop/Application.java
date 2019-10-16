@@ -14,7 +14,7 @@ public class Application {
 
   public static void main(String[] args) {
 
-    String instanceName = (args.length > 0 && StringUtils.isNotBlank(args[0])) ? args[0] : "app2";
+    String instanceName = (args.length > 0 && StringUtils.isNotBlank(args[0])) ? args[0] : "app1";
     String command = (args.length > 1 && StringUtils.isNotBlank(args[1])) ? args[1] : "ls -la";
 
     ServerInstanceManager instanceManager = new ServerInstanceManager();
