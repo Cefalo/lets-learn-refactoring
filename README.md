@@ -1,3 +1,19 @@
+## Required Tools
+* JDK 1.8 or higher
+* Git 
+* Maven 3.6.0 or higher
+* IDE - IntelliJ IDEA or Eclipse
+* Virtual Box
+ 
+## Build Instruction
+* Download VM image from https://central.cefalolab.com:5001/sharing/YTp3eQZFy
+* Import the image from Virtual Box(recommended) or VMWare Workstation Player
+* Go to the Project ROOT directory and run the following commands- 
+  * `mvn clean install`
+  * `mvn exec:java  -Dexec.mainClass=com.cefalo.workshop.Application` 
+
+You can also run the main com.cefalo.workshop.Application class from IDE.
+
 ## Problem Summary ##
 
 Suppose you are an application developer currently working for Amazon. Amazon wants you to build a SSH Client tool which will be used by their customers who purchase various servers to make their application  up & running on Amazon cloud.
