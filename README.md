@@ -7,7 +7,7 @@
  
 ## Build Instruction
 * Download VM image from https://central.cefalolab.com:5001/sharing/YTp3eQZFy
-* Import the image from Virtual Box(recommended) or VMWare Workstation Player
+* Import the image from Virtual Box
 * Go to the Project ROOT directory and run the following commands- 
   * `mvn clean install`
   * `mvn exec:java  -Dexec.mainClass=com.cefalo.workshop.Application` 
