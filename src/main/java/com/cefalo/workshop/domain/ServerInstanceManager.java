@@ -16,7 +16,7 @@ public class ServerInstanceManager {
   public ServerInfo getServerInfo(String instanceName) {
 
     ServerInfo serverInfo = null;
-    ServerRepository repository = new ServerRepository(new FileOperation(instanceName));
+    CrudRepository repository = new ServerRepository(new FileOperation(instanceName));
 
     try {
       serverInfo = repository.read();
