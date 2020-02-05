@@ -6,7 +6,7 @@
 * Virtual Box
  
 ## Build Instruction
-* Download VM image from https://central.cefalolab.com:5001/sharing/YTp3eQZFy
+* Download VM image from https://drive.google.com/file/d/1RKLL9BReGOHtnIPh6NjQkASE42TavVJZ/view?usp=sharing
 * Import the image from Virtual Box
 * Go to the Project ROOT directory and run the following commands- 
   * `mvn clean install`
